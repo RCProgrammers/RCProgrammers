@@ -33,7 +33,7 @@ int main()
     karratu[8]=' ';
     karratu[9]=' ';
     
-    cout << "Zenbat jokalariekin jolastuko dezu (1(en proceso...) edo 2)? ";
+    cout << "Zenbat jokalariekin jolastuko dezu (1 edo 2)? ";
 	cin >> jokalariak;
 
     if (jokalariak == 2) {
@@ -115,32 +115,31 @@ int main()
 				            cout << "Mugimendu txarra. Saiatu berriz." << endl;
 				            mugimendu_balidoa = false;
                          }
+                   } while (!mugimendu_balidoa);
+                         
 
+                   // Need to check the board full (no-win condition)
+                   if (karratu[1] != ' ' && karratu[2] != ' ' && karratu[3] != ' ' &&
+                       karratu[4] != ' ' && karratu[5] != ' ' && karratu[6] != ' ' &&
+                       karratu[7] != ' ' && karratu[8] != ' ' && karratu[9] != ' ' && !amaiera)
+                   {
+                                  amaiera = true;
+                                  irabazlea = false;
+                   } else {
                          do
                          {
-                            srand(time(0));
-                            x = (rand() % 9) + 1;
+                              srand(time(0));
+                              x = (rand() % 9) + 1;
                             
-                            if (karratu[x] != ' ') {
-                                mugimendu_balidoa = false;
-                            } else {
-                                mugimendu_balidoa = true;
-                            }
+                              if (karratu[x] != ' ') {
+                                 mugimendu_balidoa = false;
+                              } else {
+                                 mugimendu_balidoa = true;
+                              }
                          } while(!mugimendu_balidoa);
+                         karratu[x] = 'O';
+                   }
 
-                         // Need to check the board full (no-win condition)
-		                 if (karratu[1] != ' ' && karratu[2] != ' ' && karratu[3] != ' ' &&
-			                 karratu[4] != ' ' && karratu[5] != ' ' && karratu[6] != ' ' &&
-			                 karratu[7] != ' ' && karratu[8] != ' ' && karratu[9] != ' ' && !amaiera)
-	                         {
-			                            amaiera = true;
-			                            irabazlea = false;
-                             } else {
-                             karratu[x] = 'O';
-                             }
-                          mugimendu_balidoa = true;
-                         
-                   } while (!mugimendu_balidoa);
                    system("cls");
 		           
                    amaiera	= false;
